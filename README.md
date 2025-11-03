@@ -12,10 +12,10 @@ This system consists of 4 different micro-services:
 - Frontend (VueJS)
 - Database (Mongodb)
 
-Behavioral analysis function is a serverless function. The decision influenced by primarily for scaling factor and then cost factor. Because we haven't made the app public yet, we currently don't have a heavy load and serverless is therefore cost effective than renting a dedicated GPU cluster. At the same time, when we will go public, instead of vertically scaling, we can rely on serverless to handle multiple requeset at the same time.
+Behavioral analysis function is a serverless function. The decision influenced by primarily for scaling factor and then cost factor. Due to small number of requests, serverless is cost effective than renting a dedicated GPU cluster. At the same time, instead of vertically scaling, we can rely on serverless to handle multiple requeset at the same time.
 
 ### How our serverless reduces load from backend?
-Video classification requires immense resources. Doing it on backend server each time would left the 1 cpu core freeze from serving other requests for the time being. But this is unexpected and cannot be scaled. Therefore, we decided to move our video classification system on serverless system. Here is a complete overview of how it works.
+Video classification requires immense resources. Doing it on backend server each time would left the 1 cpu core freeze from serving other requests for the time being. But this is unexpected and cannot be scaled. Therefore, we decided to move our video classification system on serverless function. 
 <img src="figures/behavioral_analysis_system_design.png">
 <center><font size="2">Fig 1: Video Classification system</font></center>
 
