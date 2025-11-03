@@ -1,35 +1,16 @@
 # AutiMate
 ### Fast and reliable early stage autism screening for kids.
 
-
-## Run with Docker
-```
-docker build -t autimate-v1 .
-docker run -p 8080:8080 -p 5173:5173 autimate-v1
-```
-
-### Credentials to login
-#### User
-019*****411
-password1
-
-#### Admin 
-019*****410
-holymoly
-
 ## What `AutiMate` does?
-Our app are ment to be used by parents. A parent would answer few questions about child's behavior and upload a single 15-20 sec video clip of the child doing any activity (walking, grabbing objects, arm flipping etc.) and our system would check if child's behavior seemed to be autistic or not. 
-<br>
-Our behavioral analysis model is a video classifier follows the architecture mentioned in this paper: 
-> *Rani, Asha and Verma, Yashaswi* (WACV 2024). **Activity-Based Early Autism Diagnosis Using a Multi-Dataset Supervised Contrastive Learning Approach**. In *Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)*, January 2024, pp. 7788-7797.
+This app is ment to be used by parents. A parent would answer few questions about child's behavior and upload a single 15-20 sec video clip of the child doing any activity (walking, grabbing objects, arm flipping etc.) and our video model would check if child's behavior seemed to be autistic or not. 
 
 
 ### Technical Details
-Our system consists of 4 different micro-services: 
+This system consists of 4 different micro-services: 
+- Behavioral Video Analysis function - **Serverless** (Deployed@Modal.com) (PyTorch, ONNX, Python)
 - Backend (Java Spring)
-- Behavioral Analysis function - **Serverless** (Python, PyTorch, ONNX)
 - Frontend (VueJS)
-- Database (Cloud Mongodb)
+- Database (Mongodb)
 
 Behavioral analysis function is a serverless function. The decision influenced by primarily for scaling factor and then cost factor. Because we haven't made the app public yet, we currently don't have a heavy load and serverless is therefore cost effective than renting a dedicated GPU cluster. At the same time, when we will go public, instead of vertically scaling, we can rely on serverless to handle multiple requeset at the same time.
 
@@ -57,6 +38,22 @@ The feedback then converted to sound via `SpeechSynthesisUtterance` API.
 <img src="figures/feedback_on_drawing.png">
 
 <center><font size="2">Fig 4: Drawing feedback system</font></center>
+
+
+## Run with Docker
+```
+docker build -t autimate-v1 .
+docker run -p 8080:8080 -p 5173:5173 autimate-v1
+```
+
+### Credentials to login
+#### User
+019*****411
+password1
+
+#### Admin 
+019*****410
+holymoly
 
 
 ## Reference
